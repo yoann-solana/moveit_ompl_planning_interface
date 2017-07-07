@@ -6,8 +6,9 @@ if(NOT CMAKE_CONFIGURATION_TYPES AND NOT CMAKE_BUILD_TYPE)
 endif()
 
 find_package(Boost REQUIRED system filesystem date_time thread serialization)
+
 find_package(catkin REQUIRED COMPONENTS
-  ompl
+#  ompl # Comment this because ompl is not a catkin package
   moveit_core
   moveit_ros_planning
   moveit_msgs
@@ -17,7 +18,9 @@ find_package(catkin REQUIRED COMPONENTS
   tf
   dynamic_reconfigure
   eigen_conversions
-  )
+)
+
+find_package(OMPL REQUIRED) # Add this because ompl is not a catkin package
 
 generate_dynamic_reconfigure_options("ompl_interface/cfg/OMPLDynamicReconfigure.cfg")
 
@@ -27,7 +30,7 @@ catkin_package(
   INCLUDE_DIRS
     ompl_interface/include
   CATKIN_DEPENDS
-    ompl
+#    ompl # Comment this because ompl is not a catkin package
     moveit_core
     moveit_ros_planning
     moveit_msgs
